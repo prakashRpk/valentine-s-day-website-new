@@ -1,0 +1,170 @@
+:root {
+    --bg-color: #ffe6e9;
+    /* Light pink background */
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --primary-color: #ff477e;
+    --secondary-color: #ff85a1;
+    --text-color: #590d22;
+    --btn-no-bg: #ff477e;
+    --btn-yes-bg: #efefef;
+    --btn-yes-text: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--bg-color);
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(255, 183, 178, 0.5) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 154, 162, 0.5) 0%, transparent 20%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Prevent scrollbars when button moves */
+}
+
+.container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(89, 13, 34, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: transform 0.5s ease;
+    position: relative;
+    /* Added for absolute button positioning */
+}
+
+.main-text {
+    font-family: 'Pacifico', cursive;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0px rgba(255, 255, 255, 1);
+}
+
+.sub-text {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.gif-wrapper img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border: 4px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    gap: 20px;
+    /* position: relative; Removed to allow button to move relative to card */
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 35px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-no {
+    background-color: var(--btn-no-bg);
+    color: white;
+}
+
+
+/* Shake Animation */
+@keyframes shake {
+    0% {
+        translate: 0 0;
+    }
+
+    25% {
+        translate: -5px 0;
+    }
+
+    50% {
+        translate: 5px 0;
+    }
+
+    75% {
+        translate: -5px 0;
+    }
+
+    100% {
+        translate: 0 0;
+    }
+}
+
+.btn-no:hover {
+    animation: shake 0.3s;
+    background-color: #d90429;
+    transform: scale(1.05);
+    /* Will be overridden by JS inline style, which is fine */
+}
+
+
+.btn-yes {
+    background-color: var(--btn-yes-bg);
+    color: var(--btn-yes-text);
+    /* Essential for moving logic */
+    position: relative;
+    z-index: 10;
+}
+
+/* Success Section Toggle */
+.hidden {
+    display: none;
+}
+
+/* Floating Hearts Background (Optional enhancement) */
+.heart {
+    position: absolute;
+    color: var(--primary-color);
+    opacity: 0.5;
+    animation: float 5s infinite ease-in;
+    top: 100%;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
